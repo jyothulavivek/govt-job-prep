@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
 import { RefreshCw, TrendingUp, Globe, Award, Briefcase, Calendar, Newspaper, Zap } from "lucide-react";
 import { format } from "date-fns";
 import Link from "next/link";
@@ -48,56 +47,44 @@ interface AdminNewsItem {
     points: string[];
 }
 
+const getIconForCategory = (cat: string) => {
+    switch (cat.toLowerCase()) {
+        case 'sports': return Award;
+        case 'science & tech': return Zap;
+        case 'international': return Globe;
+        case 'economy': return TrendingUp;
+        case 'appointments': return Briefcase;
+        default: return Newspaper;
+    }
+};
+
 export function CurrentAffairsFeed() {
-    const [news, setNews] = useState(STARTING_NEWS);
-    const [lastUpdated, setLastUpdated] = useState(new Date());
-    const [loading, setLoading] = useState(false);
-
-
-    const getIconForCategory = (cat: string) => {
-        switch (cat.toLowerCase()) {
-            case 'sports': return Award;
-            case 'science & tech': return Zap;
-            case 'international': return Globe;
-            case 'economy': return TrendingUp;
-            case 'appointments': return Briefcase;
-            default: return Newspaper;
-        }
-    };
-
-    // Load from Local Storage on Mount
-    useEffect(() => {
-        const savedData = localStorage.getItem("current_affairs_data");
-        if (savedData) {
-            try {
-                const parsed: AdminNewsItem[] = JSON.parse(savedData);
-                // Convert Admin items to Feed items
-                const validItems = parsed.map(item => ({
-                    id: item.id,
-                    title: item.title,
-                    time: new Date(item.date), // Start of that day
-                    category: item.category,
-                    icon: getIconForCategory(item.category)
-                }));
-
-                // Merge: LocalData (Newest first) + MockData
-                // Sort by time/id
-                // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/rules-of-hooks
-                setNews(() => {
+    const [news, setNews] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const savedData = localStorage.getItem("current_affairs_data");
+            if (savedData) {
+                try {
+                    const parsed: AdminNewsItem[] = JSON.parse(savedData);
+                    const validItems = parsed.map(item => ({
+                        id: item.id,
+                        title: item.title,
+                        time: new Date(item.date),
+                        category: item.category,
+                        icon: getIconForCategory(item.category)
+                    }));
                     const combined = [...validItems, ...STARTING_NEWS];
-                    // Remove duplicates by ID just in case
                     const unique = combined.filter((v, i, a) => a.findIndex(t => t.id === v.id) === i);
-                    return unique.sort((a, b) => b.time.getTime() - a.time.getTime()).slice(0, 10); // Top 10
-                });
-            } catch (e) {
-                console.error("Failed to load news", e);
+                    return unique.sort((a, b) => b.time.getTime() - a.time.getTime()).slice(0, 10);
+                } catch (e) {
+                    console.error("Failed to load news", e);
+                }
             }
         }
-    }, []);
+        return STARTING_NEWS;
+    });
+    const [loading, setLoading] = useState(false);
 
-
-
-    const refreshNews = () => {
+    const refreshNews = useCallback(() => {
         setLoading(true);
         // Simulate refresh or re-fetch from local storage
         setTimeout(() => {
@@ -111,22 +98,22 @@ export function CurrentAffairsFeed() {
                     category: item.category,
                     icon: getIconForCategory(item.category)
                 }));
-                // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/rules-of-hooks
                 setNews(() => {
                     const combined = [...validItems, ...STARTING_NEWS];
                     const unique = combined.filter((v, i, a) => a.findIndex(t => t.id === v.id) === i);
                     return unique.sort((a, b) => b.time.getTime() - a.time.getTime()).slice(0, 10);
                 });
             }
-            setLastUpdated(new Date());
             setLoading(false);
         }, 800);
-    };
+    }, []);
+
+
 
     useEffect(() => {
         const interval = setInterval(refreshNews, 600000); // 10 mins
         return () => clearInterval(interval);
-    }, []);
+    }, [refreshNews]);
 
     return (
         <Card className="h-full border-l-4 border-l-primary shadow-sm bg-gradient-to-b from-card to-secondary/10">

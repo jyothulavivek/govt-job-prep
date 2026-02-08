@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { ArrowLeft, Calendar, FileText, Globe, Bookmark, Share2, Award, Edit } from "lucide-react";
+import { ArrowLeft, Calendar, FileText, Bookmark, Share2, Award, Edit } from "lucide-react";
 import Link from "next/link";
 import { format } from "date-fns";
 

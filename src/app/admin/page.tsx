@@ -32,7 +32,13 @@ export default function AdminPage() {
     const [activeTab, setActiveTab] = useState<'news' | 'notes'>('news');
 
     // === CURRENT AFFAIRS STATE ===
-    const [newsList, setNewsList] = useState<NewsItem[]>([]);
+    const [newsList, setNewsList] = useState<NewsItem[]>(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem("current_affairs_data");
+            return saved ? JSON.parse(saved) : [];
+        }
+        return [];
+    });
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [category, setCategory] = useState("National");
     const [title, setTitle] = useState("");
@@ -40,20 +46,21 @@ export default function AdminPage() {
     const [points, setPoints] = useState<string[]>([]);
 
     // === STUDY NOTES STATE ===
-    const [notesList, setNotesList] = useState<StudyNote[]>([]);
+    const [notesList, setNotesList] = useState<StudyNote[]>(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem("study_notes_data");
+            return saved ? JSON.parse(saved) : [];
+        }
+        return [];
+    });
     const [noteTitle, setNoteTitle] = useState("");
     const [noteSubject, setNoteSubject] = useState("History");
     const [noteContent, setNoteContent] = useState("");
 
-    // Load data from LocalStorage on mount
+    // Hydration check
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        setMounted(true);
-        const savedNews = localStorage.getItem("current_affairs_data");
-        if (savedNews) setNewsList(JSON.parse(savedNews));
-
-        const savedNotes = localStorage.getItem("study_notes_data");
-        if (savedNotes) setNotesList(JSON.parse(savedNotes));
+        const timer = setTimeout(() => setMounted(true), 0);
+        return () => clearTimeout(timer);
     }, []);
 
     // Save to LocalStorage whenever lists change

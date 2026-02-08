@@ -2,8 +2,6 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { MockTestInterface } from "@/components/features/MockTestInterface";
-import { Button } from "@/components/ui/Button";
-import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { CHAPTER_QUESTIONS } from "@/data/mockData";
