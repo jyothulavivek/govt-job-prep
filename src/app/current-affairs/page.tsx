@@ -1,18 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { ArrowLeft, Calendar, FileText, Globe, Bookmark, Share2, Award } from "lucide-react";
+import { ArrowLeft, Calendar, FileText, Globe, Bookmark, Share2, Award, Edit } from "lucide-react";
 import Link from "next/link";
 import { format } from "date-fns";
 
-// Mock Data Generator allowing date-specific content
+// Helper to get news (Mock + LocalStorage)
 const getNewsForDate = (dateStr: string) => {
+    let localData: any[] = [];
+
+    // 1. Try to get from LocalStorage (Real User Updates)
+    if (typeof window !== 'undefined') {
+        try {
+            const savedData = localStorage.getItem("current_affairs_data");
+            if (savedData) {
+                const parsed = JSON.parse(savedData);
+                // Filter by date
+                localData = parsed.filter((item: any) => item.date === dateStr);
+            }
+        } catch (e) {
+            console.error("Error reading local storage", e);
+        }
+    }
+
+    // 2. Mock Data (Simulation)
     const seed = dateStr.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
 
-    return [
+    const mockData = [
         {
             id: 1,
             category: "National Appointment",
@@ -74,18 +91,32 @@ const getNewsForDate = (dateStr: string) => {
             tags: ["Indices", "Reports"]
         }
     ];
+
+    // Merge: Local Data first (User posts), then Mock Data
+    return [...localData, ...mockData];
 };
 
 export default function CurrentAffairsPage() {
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+    const [newsItems, setNewsItems] = useState<any[]>([]);
 
-    const newsItems = getNewsForDate(selectedDate);
+    // Effect to load news when date changes (Client-side only)
+    useEffect(() => {
+        setNewsItems(getNewsForDate(selectedDate));
+    }, [selectedDate]);
 
     return (
         <div className="container mx-auto px-4 py-8 max-w-5xl">
-            <Link href="/" className="flex items-center text-sm text-muted-foreground hover:text-primary mb-6">
-                <ArrowLeft className="h-4 w-4 mr-1" /> Back to Dashboard
-            </Link>
+            <div className="flex justify-between items-center mb-6">
+                <Link href="/" className="flex items-center text-sm text-muted-foreground hover:text-primary">
+                    <ArrowLeft className="h-4 w-4 mr-1" /> Back to Dashboard
+                </Link>
+                <Link href="/admin">
+                    <Button variant="outline" size="sm" className="gap-2">
+                        <Edit className="h-4 w-4" /> Manage Updates
+                    </Button>
+                </Link>
+            </div>
 
             <div className="flex flex-col md:flex-row gap-8">
 
@@ -143,6 +174,12 @@ export default function CurrentAffairsPage() {
                     </div>
 
                     <div className="space-y-6">
+                        {newsItems.length === 0 && (
+                            <div className="text-center py-10 text-muted-foreground">
+                                No updates for this date.
+                            </div>
+                        )}
+
                         {newsItems.map((news) => (
                             <Card key={news.id} className="hover:shadow-md transition-shadow animated-card">
                                 <CardHeader className="pb-2">
@@ -163,7 +200,7 @@ export default function CurrentAffairsPage() {
                                 </CardHeader>
                                 <CardContent>
                                     <ul className="space-y-2 mb-4">
-                                        {news.points.map((point, idx) => (
+                                        {news.points.map((point: string, idx: number) => (
                                             <li key={idx} className="flex items-start gap-2 text-sm md:text-base">
                                                 <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
                                                 <span>{point}</span>
@@ -171,7 +208,7 @@ export default function CurrentAffairsPage() {
                                         ))}
                                     </ul>
                                     <div className="flex gap-2 mt-4 pt-4 border-t">
-                                        {news.tags.map(tag => (
+                                        {news.tags.map((tag: string) => (
                                             <span key={tag} className="text-xs font-mono text-muted-foreground bg-muted/50 px-2 py-1 rounded">#{tag}</span>
                                         ))}
                                     </div>
