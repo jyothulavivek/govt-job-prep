@@ -3,115 +3,116 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
-import { RefreshCw, Radio } from "lucide-react";
+import { RefreshCw, TrendingUp, Globe, Award, Briefcase } from "lucide-react";
 import { format } from "date-fns";
 
-// Mock data generator
-const generateNews = () => [
+// High quality mock data for competitive exams
+const STARTING_NEWS = [
     {
         id: 1,
-        title: "SSC CGL 2024 Notification Released",
+        title: "India ranks 80th in Henley Passport Index 2025",
         time: new Date(),
-        category: "Recruitment",
+        category: "Indices",
+        icon: Globe,
     },
     {
         id: 2,
-        title: "RBI Grade B Phase 1 Results Declared",
-        time: new Date(Date.now() - 1000 * 60 * 5), // 5 mins ago
-        category: "Result",
+        title: "Rohan Bopanna becomes oldest World No. 1 in Men's Doubles",
+        time: new Date(Date.now() - 1000 * 60 * 12),
+        category: "Sports",
+        icon: Award,
     },
     {
         id: 3,
-        title: "New Cabinet Ministers List Updated",
-        time: new Date(Date.now() - 1000 * 60 * 15), // 15 mins ago
-        category: "GK Update",
+        title: "Govt appoints new Chairman of 16th Finance Commission",
+        time: new Date(Date.now() - 1000 * 60 * 45),
+        category: "Appointments",
+        icon: Briefcase,
     },
     {
         id: 4,
-        title: "Daily Vocabulary: 10 New Words Added",
-        time: new Date(Date.now() - 1000 * 60 * 30), // 30 mins ago
-        category: "English",
+        title: "Interim Budget 2025: Fiscal Deficit target lower at 5.1%",
+        time: new Date(Date.now() - 1000 * 60 * 120),
+        category: "Economy",
+        icon: TrendingUp,
     },
 ];
 
 export function CurrentAffairsFeed() {
-    const [news, setNews] = useState(generateNews());
+    const [news, setNews] = useState(STARTING_NEWS);
     const [lastUpdated, setLastUpdated] = useState(new Date());
     const [loading, setLoading] = useState(false);
 
     const refreshNews = () => {
         setLoading(true);
-        // Simulate API call
+        // Simulate finding new update
         setTimeout(() => {
             setNews((prev) => {
-                // Add a new random item to top to simulate live update
                 const newUpdate = {
                     id: Date.now(),
-                    title: "Live Update: Important Summit Concludes in Delhi",
+                    title: "SpaceX successfully launches GSAT-20 satellite for ISRO",
                     time: new Date(),
-                    category: "National News"
+                    category: "Sci-Tech",
+                    icon: Globe,
                 };
                 return [newUpdate, ...prev.slice(0, 4)];
             });
             setLastUpdated(new Date());
             setLoading(false);
-        }, 1000);
+        }, 800);
     };
 
     useEffect(() => {
-        // Auto-refresh every 10 minutes (600,000 ms)
-        const interval = setInterval(() => {
-            refreshNews();
-        }, 600000);
-
+        const interval = setInterval(refreshNews, 600000); // 10 mins
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <div className="w-full max-w-md mx-auto">
-            <Card>
-                <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+        <Card className="h-full border-l-4 border-l-primary shadow-sm bg-gradient-to-b from-card to-secondary/10">
+            <CardHeader className="flex flex-row items-center justify-between pb-2 border-b/50">
+                <div className="space-y-1">
                     <CardTitle className="text-lg font-bold flex items-center gap-2">
-                        <Radio className="h-4 w-4 text-red-500 animate-pulse" />
-                        Live Current Affairs
+                        <span className="relative flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                        </span>
+                        Top Headlines
                     </CardTitle>
-                    <Badge variant="outline" className="text-xs font-normal">
-                        Updates every 10m
-                    </Badge>
-                </CardHeader>
-                <CardContent>
-                    <div className="flex justify-between items-center text-xs text-muted-foreground mb-4">
-                        <span>Last updated: {format(lastUpdated, "hh:mm a")}</span>
-                        <button
-                            onClick={refreshNews}
-                            disabled={loading}
-                            className="flex items-center gap-1 hover:text-primary transition-colors"
-                        >
-                            <RefreshCw className={`h-3 w-3 ${loading ? "animate-spin" : ""}`} />
-                            Refresh
-                        </button>
-                    </div>
-                    <div className="space-y-4">
-                        {news.map((item) => (
-                            <div key={item.id} className="flex gap-3 items-start border-b pb-3 last:border-0 last:pb-0 animate-in fade-in slide-in-from-top-1 duration-500">
-                                <div className="flex-1 space-y-1">
-                                    <p className="text-sm font-medium leading-none text-foreground">
-                                        {item.title}
-                                    </p>
-                                    <div className="flex items-center gap-2">
-                                        <Badge variant="secondary" className="text-[10px] px-1 py-0 h-5">
-                                            {item.category}
-                                        </Badge>
-                                        <span className="text-xs text-muted-foreground">
-                                            {format(item.time, "hh:mm a")}
-                                        </span>
-                                    </div>
+                    <p className="text-xs text-muted-foreground">Real-time exam updates</p>
+                </div>
+                <button
+                    onClick={refreshNews}
+                    disabled={loading}
+                    className="p-2 hover:bg-secondary rounded-full transition-colors"
+                    title="Refresh Feed"
+                >
+                    <RefreshCw className={`h-4 w-4 text-muted-foreground ${loading ? "animate-spin" : ""}`} />
+                </button>
+            </CardHeader>
+            <CardContent className="pt-4">
+                <div className="space-y-4">
+                    {news.map((item, i) => (
+                        <div key={item.id} className="group flex gap-3 items-start animate-in fade-in slide-in-from-top-2 duration-500">
+                            <div className={`mt-1 p-1.5 rounded-full ${i === 0 ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'}`}>
+                                <item.icon className="h-4 w-4" />
+                            </div>
+                            <div className="flex-1 space-y-1">
+                                <p className={`text-sm font-medium leading-snug group-hover:text-primary transition-colors ${i === 0 ? 'text-foreground' : 'text-muted-foreground'}`}>
+                                    {item.title}
+                                </p>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/80">
+                                        {item.category}
+                                    </span>
+                                    <span className="text-[10px] text-muted-foreground">
+                                        • {format(item.time, "h:mm a")}
+                                    </span>
                                 </div>
                             </div>
-                        ))}
-                    </div>
-                </CardContent>
-            </Card>
-        </div>
+                        </div>
+                    ))}
+                </div>
+            </CardContent>
+        </Card>
     );
 }
