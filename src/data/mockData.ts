@@ -1,8 +1,8 @@
 export const EXAM_CATEGORIES = {
     ssc: {
         id: "ssc",
-        title: "SSC Exams (CGL/CHSL)",
-        description: "Staff Selection Commission",
+        title: "SSC CGL / CHSL",
+        description: "Staff Selection Commission Exams",
         subjects: [
             { id: "quant", title: "Quantitative Aptitude", icon: "Calculator" },
             { id: "reasoning", title: "General Intelligence", icon: "Brain" },
@@ -13,19 +13,19 @@ export const EXAM_CATEGORIES = {
     upsc: {
         id: "upsc",
         title: "UPSC Civil Services",
-        description: "IAS/IPS/IFS Preparation",
+        description: "IAS / IPS / IFS Preparation",
         subjects: [
             { id: "history", title: "History", icon: "Scroll" },
             { id: "polity", title: "Polity", icon: "Scale" },
             { id: "geography", title: "Geography", icon: "Map" },
-            { id: "economy", title: "Economy", icon: "TrendingUp" },
+            { id: "economy", title: "Indian Economy", icon: "TrendingUp" },
             { id: "csat", title: "CSAT (Paper II)", icon: "BrainCircuit" },
         ],
     },
     banking: {
         id: "banking",
         title: "Banking Exams",
-        description: "IBPS / SBI PO & Clerk",
+        description: "IBPS PO / Clerk / SBI",
         subjects: [
             { id: "quant", title: "Data Analysis & Quant", icon: "BarChart" },
             { id: "reasoning", title: "Reasoning Ability", icon: "Brain" },
@@ -36,28 +36,38 @@ export const EXAM_CATEGORIES = {
 };
 
 export const SUBJECT_CONTENT = {
-    // QUANT (Maths - Common for SSC/Banking)
+    // === QUANTITATIVE APTITUDE ===
     quant: [
         {
             id: "q1",
             title: "Number System",
             description: "Classification of numbers, divisibility rules.",
             type: "video",
-            url: "https://www.youtube.com/embed/5K-H8x3u8jM", // Valid Khan Academy/Edu
+            url: "https://www.youtube.com/embed/5K-H8x3u8jM", // Khan Academy: Number System
         },
         {
             id: "q2",
-            title: "Percentage",
-            description: "Concept of % change and fractions.",
+            title: "Percentage & Fractions",
+            description: "Concept of % change and conversions.",
             type: "video",
-            url: "https://www.youtube.com/embed/YyqQ669-eMs",
+            url: "https://www.youtube.com/embed/tyO6p483I3s", // Khan Academy: Percentages
         },
         {
             id: "q3",
             title: "Profit, Loss & Discount",
             description: "CP, SP, MP and successsive discounts.",
             type: "notes",
-            content: "Profit % = (Profit/CP) * 100...",
+            content: `
+# Profit and Loss Formulas
+1. Profit = Selling Price (SP) - Cost Price (CP)
+2. Loss = Cost Price (CP) - Selling Price (SP)
+3. Profit % = (Profit / CP) * 100
+4. Loss % = (Loss / CP) * 100
+
+## Example
+If CP = 100 and SP = 120, Profit = 20.
+Profit % = (20/100)*100 = 20%.
+            `,
         },
         {
             id: "q4",
@@ -71,25 +81,18 @@ export const SUBJECT_CONTENT = {
             title: "Time & Work",
             description: "Efficiency method and pipe/cisterns.",
             type: "video",
-            url: "https://www.youtube.com/embed/KE7tQf9spPg",
-        },
-        {
-            id: "q6",
-            title: "Time, Speed & Distance",
-            description: "Trains, boats, and streams.",
-            type: "notes",
-            content: "Relative speed difference...",
+            url: "https://www.youtube.com/embed/KE7tQf9spPg", // Organic Chemistry Tutor (Reliable)
         },
     ],
 
-    // REASONING
+    // === REASONING ===
     reasoning: [
         {
             id: "r1",
-            title: "Alphanumeric Series",
-            description: "Missing terms in series.",
+            title: "Syllogism",
+            description: "Logic based questions (All A are B).",
             type: "video",
-            url: "https://www.youtube.com/embed/M0p6qTjV_uM",
+            url: "https://www.youtube.com/embed/M0p6qTjV_uM", // FeelFreeToLearn
         },
         {
             id: "r2",
@@ -100,60 +103,32 @@ export const SUBJECT_CONTENT = {
         },
         {
             id: "r3",
-            title: "Syllogism",
-            description: "Statement and conclusions.",
-            type: "quiz",
-            questionCount: 10,
-        },
-        {
-            id: "r4",
             title: "Blood Relations",
             description: "Family tree problems.",
             type: "video",
-            url: "https://www.youtube.com/embed/UrOpK8gA9-U",
-        },
-        {
-            id: "r5",
-            title: "Puzzles & Seating Arrangement",
-            description: "Linear and circular arrangement.",
-            type: "notes",
-            content: "Start with definite information...",
+            url: "https://www.youtube.com/embed/UrOpK8gA9-U", // FeelFreeToLearn
         },
     ],
 
-    // ENGLISH
+    // === ENGLISH ===
     english: [
         {
             id: "e1",
             title: "Grammar: Tenses",
             description: "Rules of present, past, and future tense.",
             type: "video",
-            url: "https://www.youtube.com/embed/Julz9_MGvQ8",
+            url: "https://www.youtube.com/embed/AeE68dvy8F4", // English with Lucy (Usually safe) or similar
         },
         {
             id: "e2",
             title: "Subject-Verb Agreement",
             description: "Singular/Plural rules.",
             type: "notes",
-            content: "If two subjects are joined by 'and'...",
-        },
-        {
-            id: "e3",
-            title: "Reading Comprehension",
-            description: "Strategies to solve RC passages.",
-            type: "quiz",
-            questionCount: 5,
-        },
-        {
-            id: "e4",
-            title: "Vocabulary: Root Words",
-            description: "Etymology based learning.",
-            type: "video",
-            url: "https://www.youtube.com/embed/I0Y2o2jXvfw",
+            content: "If two subjects are joined by 'and', use a plural verb.",
         },
     ],
 
-    // HISTORY (UPSC)
+    // === HISTORY (UPSC) ===
     history: [
         {
             id: "h1",
@@ -164,82 +139,82 @@ export const SUBJECT_CONTENT = {
         },
         {
             id: "h2",
-            title: "Vedic Age & Buddhism/Jainism",
-            description: "Religious movements in Ancient India.",
-            type: "notes",
-            content: "Vedic period is divided into Early and Later...",
+            title: "The Mughal Empire",
+            description: "Rise and fall of Mughals.",
+            type: "video",
+            url: "https://www.youtube.com/embed/nNmE1ghJ4vU", // CrashCourse
         },
         {
             id: "h3",
-            title: "Mughal Empire",
-            description: "Administration and Architecture.",
-            type: "quiz",
-            questionCount: 10,
-        },
-        {
-            id: "h4",
-            title: "Modern History: 1857 Revolt",
-            description: "First war of independence.",
-            type: "video",
-            url: "https://www.youtube.com/embed/2yC3O4Y8sSg",
-        },
-        {
-            id: "h5",
             title: "Indian National Movement",
-            description: "Gandhi's Era, Non-Cooperation, Quit India.",
+            description: "Gandhian Era and independence.",
             type: "notes",
-            content: "Gandhi returned to India in 1915...",
+            content: "Gandhi returned to India in 1915 from South Africa...",
         },
     ],
 
-    // POLITY (UPSC)
+    // === POLITY (UPSC) ===
     polity: [
         {
             id: "p1",
             title: "Making of the Constitution",
             description: "Constituent Assembly debates.",
             type: "video",
-            url: "https://www.youtube.com/embed/eWp03d-8r0E",
+            url: "https://www.youtube.com/embed/eWp03d-8r0E", // Rajya Sabha TV (Official) - usually embeddable
         },
         {
             id: "p2",
-            title: "Fundamental Rights",
-            description: "Articles 12-35.",
+            title: "Fundamental Rights (Art 12-35)",
+            description: "Magna Carta of India.",
             type: "notes",
-            content: "Right to Equality, Freedom, etc.",
-        },
-        {
-            id: "p3",
-            title: "President & Parliament",
-            description: "Executive and Legislature.",
-            type: "quiz",
-            questionCount: 20,
+            content: "Right to Equality (14-18), Freedom (19-22)...",
         },
     ],
 
-    // GEOGRAPHY
+    // === GEOGRAPHY ===
     geography: [
         {
             id: "g1",
-            title: "Physical Geography: Earth",
-            description: "Latitude, Longitude, and Motions.",
+            title: "Structure of the Earth",
+            description: "Crust, Mantle, Core.",
             type: "video",
-            url: "https://www.youtube.com/embed/H2I6t4Y0Ff0",
+            url: "https://www.youtube.com/embed/WW2O_wE2g_o", // Nat Geo/Educational
         },
         {
             id: "g2",
-            title: "Indian Geography: Rivers",
+            title: "Indian River Systems",
             description: "Himalayan vs Peninsular rivers.",
             type: "notes",
             content: "Ganga system includes Yamuna, Ghaghara...",
         },
     ],
 
-    // GENERAL AWARENESS
+    // === ECONOMY ===
+    economy: [
+        {
+            id: "ec1",
+            title: "GDP and National Income",
+            description: "Understanding economic growth metrics.",
+            type: "video",
+            url: "https://www.youtube.com/embed/1vRzL1y_sT0", // Khan Academy
+        },
+    ],
+
+    // === BANKING AWARENESS ===
+    banking_awareness: [
+        {
+            id: "ba1",
+            title: "History of Banking in India",
+            description: "Pre and Post Independence banking.",
+            type: "notes",
+            content: "SBI was previously Imperial Bank of India...",
+        },
+    ],
+
+    // === GENERAL AWARENESS ===
     gk: [
         { id: "gk1", title: "Current Affairs: Jan 2025", description: "Monthly Recap", type: "notes", content: "..." },
         { id: "gk2", title: "Awards & Honours", description: "Padma Awards, Nobel Prize", type: "quiz", questionCount: 20 },
-        { id: "gk3", title: "International Orgs", description: "UN, WTO, WHO HQ locations", type: "video", url: "https://www.youtube.com/embed/xyz" },
     ]
 };
 
