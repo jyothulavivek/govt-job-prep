@@ -1,9 +1,23 @@
 export function VideoPlayer({ url, title }: { url: string; title: string }) {
     // Helper to ensure embed URL
     const getEmbedUrl = (inputUrl: string) => {
+        if (!inputUrl) return "";
+
+        // Handle standard embed
         if (inputUrl.includes("embed/")) return inputUrl;
-        const videoId = inputUrl.split("v=")[1]?.split("&")[0];
-        if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+
+        // Handle watch?v=
+        if (inputUrl.includes("v=")) {
+            const videoId = inputUrl.split("v=")[1]?.split("&")[0];
+            if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+        }
+
+        // Handle youtu.be/ID
+        if (inputUrl.includes("youtu.be/")) {
+            const videoId = inputUrl.split("youtu.be/")[1]?.split("?")[0];
+            if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+        }
+
         return inputUrl;
     };
 
