@@ -431,4 +431,89 @@ export const MOCK_TESTS = [
         duration: 60,
         difficulty: "High",
     },
+    // === PREVIOUS YEAR PAPERS (PYQ) ===
+    // SSC CGL
+    {
+        id: "pyq_cgl_2024",
+        title: "SSC CGL 2024 (Tier 1) - Shift 1",
+        category: "ssc",
+        questions: 100,
+        duration: 60,
+        difficulty: "Medium",
+        tags: ["PYQ", "2024"]
+    },
+    {
+        id: "pyq_cgl_2023",
+        title: "SSC CGL 2023 (Tier 1) - Shift 1",
+        category: "ssc",
+        questions: 100,
+        duration: 60,
+        difficulty: "Medium",
+        tags: ["PYQ", "2023"]
+    },
+    {
+        id: "pyq_cgl_2022",
+        title: "SSC CGL 2022 (Tier 1) - Shift 1",
+        category: "ssc",
+        questions: 100,
+        duration: 60,
+        difficulty: "Medium",
+        tags: ["PYQ", "2022"]
+    },
+    // SSC CHSL
+    {
+        id: "pyq_chsl_2024",
+        title: "SSC CHSL 2024 (Tier 1)",
+        category: "ssc",
+        questions: 100,
+        duration: 60,
+        difficulty: "Easy-Medium",
+        tags: ["PYQ", "2024"]
+    },
+    {
+        id: "pyq_chsl_2023",
+        title: "SSC CHSL 2023 (Tier 1)",
+        category: "ssc",
+        questions: 100,
+        duration: 60,
+        difficulty: "Easy-Medium",
+        tags: ["PYQ", "2023"]
+    },
+    {
+        id: "pyq_chsl_2022",
+        title: "SSC CHSL 2022 (Tier 1)",
+        category: "ssc",
+        questions: 100,
+        duration: 60,
+        difficulty: "Easy-Medium",
+        tags: ["PYQ", "2022"]
+    },
+    // RAILWAY
+    {
+        id: "pyq_rrb_ntpc_2022",
+        title: "Railway RRB NTPC 2022 (CBT 2)",
+        category: "ssc", // Grouping under SSC/Govt General
+        questions: 120,
+        duration: 90,
+        difficulty: "Hard",
+        tags: ["PYQ", "Railway"]
+    },
+    {
+        id: "pyq_rrb_ntpc_2021",
+        title: "Railway RRB NTPC 2021 (CBT 1)",
+        category: "ssc",
+        questions: 100,
+        duration: 90,
+        difficulty: "Medium",
+        tags: ["PYQ", "Railway"]
+    },
+    {
+        id: "pyq_rrb_grp_d_2022",
+        title: "Railway Group D 2022",
+        category: "ssc",
+        questions: 100,
+        duration: 90,
+        difficulty: "Medium",
+        tags: ["PYQ", "Railway"]
+    }
 ];
