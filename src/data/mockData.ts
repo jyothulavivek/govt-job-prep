@@ -43,42 +43,147 @@ export const SUBJECT_CONTENT = {
             title: "Number System",
             description: "Classification, Divisibility Rules, Remainder Theorem.",
             videoUrl: "https://www.youtube.com/embed/5K-H8x3u8jM",
-            notesContent: "Divisibility Rules:\n2 - Last digit even\n3 - Sum of digits div by 3\n4 - Last 2 digits div by 4...",
+            notesContent: `
+# Number System - Comprehensive Notes
+
+## 1. Classification of Numbers
+- **Natural Numbers (N)**: Counting numbers {1, 2, 3, ...}
+- **Whole Numbers (W)**: Natural numbers + 0 {0, 1, 2, ...}
+- **Integers (Z)**: {..., -2, -1, 0, 1, 2, ...}
+- **Rational Numbers (Q)**: Can be written as p/q where q ≠ 0. (e.g., 2/3, -5, 0.5)
+- **Irrational Numbers**: Cannot be written as p/q. Non-terminating, non-recurring decimals. (e.g., √2, π)
+- **Prime Numbers**: Divisible only by 1 and itself. {2, 3, 5, 7, 11...} (2 is the only even prime).
+
+## 2. Divisibility Rules
+- **Div by 2**: Last digit is even (0, 2, 4, 6, 8).
+- **Div by 3**: Sum of digits is divisible by 3. (e.g., 123 -> 1+2+3=6 ✅)
+- **Div by 4**: Last two digits divisible by 4. (e.g., 124 -> 24 ✅)
+- **Div by 5**: Last digit is 0 or 5.
+- **Div by 6**: Divisible by both 2 and 3.
+- **Div by 8**: Last three digits divisible by 8.
+- **Div by 9**: Sum of digits is divisible by 9.
+- **Div by 11**: (Sum of odd places) - (Sum of even places) = 0 or multiple of 11.
+
+## 3. Important Formulas
+- **Sum of first n natural numbers**: n(n+1)/2
+- **Sum of squares of first n natural numbers**: n(n+1)(2n+1)/6
+- **Sum of cubes of first n natural numbers**: [n(n+1)/2]^2
+            `,
         },
         {
             id: "q_sim",
             title: "Simplification",
             description: "BODMAS, Surds & Indices.",
             videoUrl: "https://www.youtube.com/embed/M0p6qTjV_uM",
-            notesContent: "BODMAS: Bracket, Order, Division, Multiplication, Addition, Subtraction.",
+            notesContent: "BODMAS Rule:\n1. B - Brackets\n2. O - Of (Multiplication)\n3. D - Division\n4. M - Multiplication\n5. A - Addition\n6. S - Subtraction\n\nAlways follow this order to solve expressions correctly.",
         },
         {
             id: "q_alg",
             title: "Algebra",
             description: "Identities, Polynomials, Linear Equations.",
             videoUrl: "https://www.youtube.com/embed/kp2C5-6X_vw",
-            notesContent: "(a+b)^2 = a^2 + b^2 + 2ab\n(a-b)^2 = a^2 - 2ab + b^2",
+            notesContent: `
+# Important Algebraic Identities
+
+## Square Formulas
+1. (a + b)² = a² + b² + 2ab
+2. (a - b)² = a² + b² - 2ab
+3. a² - b² = (a + b)(a - b)
+4. (a + b + c)² = a² + b² + c² + 2(ab + bc + ca)
+
+## Cube Formulas
+1. (a + b)³ = a³ + b³ + 3ab(a + b)
+2. (a - b)³ = a³ - b³ - 3ab(a - b)
+3. a³ + b³ = (a + b)(a² - ab + b²)
+4. a³ - b³ = (a - b)(a² + ab + b²)
+
+## Conditional Identity
+If a + b + c = 0, then a³ + b³ + c³ = 3abc.
+            `,
         },
         {
             id: "q_geo",
             title: "Geometry",
             description: "Lines, Angles, Triangles, Circles.",
             videoUrl: "https://www.youtube.com/embed/_y_QpU6yS1w",
-            notesContent: "Sum of angles in triangle = 180 degrees.\nPythagoras Theorem: a^2 + b^2 = c^2",
+            notesContent: `
+# Geometry Basics
+
+## 1. Lines and Angles
+- **Acute Angle**: < 90°
+- **Obtuse Angle**: > 90°
+- **Right Angle**: = 90°
+- **Reflex Angle**: > 180° but < 360°
+- **Complementary Angles**: Sum = 90°
+- **Supplementary Angles**: Sum = 180°
+
+## 2. Triangles
+- **Sum of Angles**: ∠A + ∠B + ∠C = 180°
+- **Exterior Angle Property**: Exterior angle = Sum of two interior opposite angles.
+- **Centroid**: Intersection of medians (divides median in 2:1 ratio).
+- **Incenter**: Intersection of angle bisectors (center of incircle).
+- **Orthocenter**: Intersection of altitudes.
+- **Circumcenter**: Intersection of perpendicular bisectors.
+
+### Congruence Criteria
+- **SSS**: Side-Side-Side
+- **SAS**: Side-Angle-Side
+- **ASA**: Angle-Side-Angle
+- **RHS**: Right angle-Hypotenuse-Side
+
+## 3. Circles
+- **Diameter** = 2 × Radius
+- **Tangent**: Touches circle at one point. Radius is perpendicular to tangent at point of contact.
+- **Cyclic Quadrilateral**: Sum of opposite angles = 180°.
+            `,
         },
         {
             id: "q_men",
             title: "Mensuration",
             description: "Area, Volume of 2D & 3D shapes.",
             videoUrl: "https://www.youtube.com/embed/9N4X2vD7n44",
-            notesContent: "Cylinder Volume = πr^2h\nCone Volume = (1/3)πr^2h",
+            notesContent: `
+# Mensuration Formulas
+
+## 2D Shapes (Area & Perimeter)
+- **Rectangle**: Area = l×b, Perim = 2(l+b)
+- **Square**: Area = a², Perim = 4a
+- **Triangle**: Area = ½ × base × height OR √[s(s-a)(s-b)(s-c)] (Heron’s Formula)
+- **Circle**: Area = πr², Circumference = 2πr
+
+## 3D Shapes (Volume & Surface Area)
+- **Cube**: Vol = a³, TSA = 6a²
+- **Cuboid**: Vol = lbh, TSA = 2(lb+bh+hl)
+- **Cylinder**: Vol = πr²h, CSA = 2πrh, TSA = 2πr(h+r)
+- **Cone**: Vol = (1/3)πr²h, CSA = πrl, TSA = πr(l+r)
+- **Sphere**: Vol = (4/3)πr³, TSA = 4πr²
+            `,
         },
         {
             id: "q_trig",
             title: "Trigonometry",
             description: "Circular Measure, Heights & Distances.",
             videoUrl: "https://www.youtube.com/embed/Pub0Y5ZpY8s",
-            notesContent: "sin = P/H, cos = B/H, tan = P/B",
+            notesContent: `
+# Trigonometry Essentials
+
+## Basic Ratios
+- sin θ = Perpendicular / Hypotenuse
+- cos θ = Base / Hypotenuse
+- tan θ = Perpendicular / Base
+
+## Pythagorean Identities
+1. sin²θ + cos²θ = 1
+2. 1 + tan²θ = sec²θ
+3. 1 + cot²θ = cosec²θ
+
+## Standard Values
+| Angle | 0° | 30° | 45° | 60° | 90° |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| sin | 0 | 1/2 | 1/√2 | √3/2 | 1 |
+| cos | 1 | √3/2 | 1/√2 | 1/2 | 0 |
+| tan | 0 | 1/√3 | 1 | √3 | ∞ |
+            `,
         },
         {
             id: "q_pct",
@@ -216,7 +321,32 @@ export const SUBJECT_CONTENT = {
             title: "Geography",
             description: "Physical and Indian Geography.",
             videoUrl: "https://www.youtube.com/embed/H2I6t4Y0Ff0",
-            notesContent: "Solar System, Earth structure, Climate, Rivers.",
+            notesContent: `
+# Geography Overview
+
+## 1. Solar System
+- **Planets**: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.
+- **Inner Planets**: Terrestrial (Mercury to Mars).
+- **Outer Planets**: Gas Giants (Jupiter to Neptune).
+- **Morning Star**: Venus.
+- **Red Planet**: Mars.
+
+## 2. Structure of Earth
+- **Crust**: Outermost layer. Continental (Sial) and Oceanic (Sima).
+- **Mantle**: 84% of Earth's volume. Magma source.
+- **Core**: Innermost. Outer core (liquid), Inner core (solid). Made of NiFe (Nickel & Iron).
+
+## 3. Indian Rivers
+### Himalayan Rivers
+- **Ganga**: Longest in India. Origin: Gangotri Glacier.
+- **Indus**: Flows through Ladakh and Pakistan.
+- **Brahmaputra**: Originates in Tibet (Tsangpo). Enters India via Arunachal.
+
+### Peninsular Rivers
+- **Godavari**: 'Dakshin Ganga'. Longest peninsular river.
+- **Krishna**: Flows through Maharashtra, Karnataka, Telangana, AP.
+- **Kaveri**: 'Ganga of the South'. Source: Talakaveri within Western Ghats.
+            `,
         },
         {
             id: "gk_eco",
@@ -234,18 +364,37 @@ export const SUBJECT_CONTENT = {
         },
     ],
 
-    // === UPSC specific mappings (History/Polity overlap with GK but specific categories exist) ===
-    history: [ /* Reusing GK History content logically, but keeping separate definition for mapping simplicity */
+    // === UPSC specific mappings ===
+    history: [
         { id: "h1", title: "Ancient India", description: "Indus Valley to Guptas", videoUrl: "https://www.youtube.com/embed/AvFl6UBZLv4", notesContent: "..." },
         { id: "h2", title: "Medieval India", description: "Delhi Sultanate to Mughals", videoUrl: "https://www.youtube.com/embed/nNmE1ghJ4vU", notesContent: "..." },
         { id: "h3", title: "Modern India", description: "1857 to 1947", videoUrl: "https://www.youtube.com/embed/2yC3O4Y8sSg", notesContent: "..." },
     ],
-    // ... duplicate/similar structure for other subjects can be inferred or added if needed
     polity: [
         { id: "p1", title: "Constitution", description: "Making & Features", videoUrl: "https://www.youtube.com/embed/eWp03d-8r0E", notesContent: "..." },
     ],
     geography: [
-        { id: "g1", title: "Physical Geo", description: "Geomorphology", videoUrl: "https://www.youtube.com/embed/H2I6t4Y0Ff0", notesContent: "..." },
+        {
+            id: "gk_geo_dup",
+            title: "Geography",
+            description: "Physical and Indian Geography.",
+            videoUrl: "https://www.youtube.com/embed/H2I6t4Y0Ff0",
+            notesContent: `
+# Geography Overview (UPSC)
+
+## 1. Solar System
+- **Planets**: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.
+- **Morning Star**: Venus.
+
+## 2. Structure of Earth
+- **Crust**: Outermost layer. Continental (Sial) and Oceanic (Sima).
+- **Mantle**: 84% of Earth's volume. Magma source.
+- **Core**: Innermost. Outer core (liquid), Inner core (solid). Made of NiFe (Nickel & Iron).
+
+## 3. Climatology
+- Atmosphere layers: Troposphere, Stratosphere (Ozone), Mesosphere, Thermosphere, Exosphere.
+            `,
+        },
     ],
     economy: [
         { id: "ec1", title: "Macroeconomics", description: "National Income", videoUrl: "https://www.youtube.com/embed/1vRzL1y_sT0", notesContent: "..." },
