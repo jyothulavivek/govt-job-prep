@@ -517,3 +517,63 @@ export const MOCK_TESTS = [
         tags: ["PYQ", "Railway"]
     }
 ];
+
+// === QUESTION BANKS ===
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const CHAPTER_QUESTIONS: Record<string, any[]> = {
+    // Quant - Number System
+    q_num: [
+        { id: 1, text: "Which of the following is a prime number?", options: ["21", "33", "37", "49"], correctAnswer: 2 },
+        { id: 2, text: "Find the remainder when 17^23 is divided by 16.", options: ["0", "1", "2", "15"], correctAnswer: 1 },
+        { id: 3, text: "The sum of first 20 natural numbers is:", options: ["210", "190", "200", "400"], correctAnswer: 0 },
+        { id: 4, text: "Which is the smallest 3-digit number divisible by 7?", options: ["101", "105", "112", "100"], correctAnswer: 1 },
+        { id: 5, text: "HCF of 24, 60 and 48 is:", options: ["12", "24", "6", "8"], correctAnswer: 0 }
+    ],
+    // Quant - Algebra
+    q_alg: [
+        { id: 1, text: "If x + 1/x = 2, then x^2 + 1/x^2 = ?", options: ["0", "1", "2", "4"], correctAnswer: 2 },
+        { id: 2, text: "Identify the linear equation:", options: ["x^2 + x", "x + 2 = 5", "x^3 = 1", "1/x = x"], correctAnswer: 1 },
+        { id: 3, text: "Expand (a+b)^2 - (a-b)^2", options: ["2ab", "4ab", "2(a^2+b^2)", "0"], correctAnswer: 1 },
+        { id: 4, text: "Roots of x^2 - 5x + 6 = 0 are:", options: ["2, 3", "1, 6", "-2, -3", "5, 1"], correctAnswer: 0 },
+        { id: 5, text: "If a=3, b=2, value of a^2 - b^2", options: ["1", "5", "6", "9"], correctAnswer: 1 }
+    ],
+    // Quant - Geometry
+    q_geo: [
+        { id: 1, text: "Sum of interior angles of a pentagon is:", options: ["360°", "540°", "720°", "180°"], correctAnswer: 1 },
+        { id: 2, text: "The longest chord of a circle is called:", options: ["Radius", "Secant", "Diameter", "Tangent"], correctAnswer: 2 },
+        { id: 3, text: "In a right triangle, hypotenuse is 10, base is 8. Height is:", options: ["6", "4", "8", "2"], correctAnswer: 0 },
+        { id: 4, text: "Centroid divides the median in ratio:", options: ["1:1", "2:1", "3:1", "1:2"], correctAnswer: 1 },
+        { id: 5, text: "Angles of a triangle are in ratio 2:3:4. The largest angle is:", options: ["40°", "60°", "80°", "100°"], correctAnswer: 2 }
+    ],
+    // Geography
+    gk_geo: [
+        { id: 1, text: "Which planet is known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"], correctAnswer: 1 },
+        { id: 2, text: "The layer of atmosphere containing Ozone is:", options: ["Troposphere", "Stratosphere", "Mesosphere", "Exosphere"], correctAnswer: 1 },
+        { id: 3, text: "Longest river in India is:", options: ["Godavari", "Ganga", "Yamuna", "Brahmaputra"], correctAnswer: 1 },
+        { id: 4, text: "Which state has the longest coastline?", options: ["Maharashtra", "Tamil Nadu", "Gujarat", "Andhra Pradesh"], correctAnswer: 2 },
+        { id: 5, text: "Himalayas are which type of mountains?", options: ["Block", "Fold", "Volcanic", "Residual"], correctAnswer: 1 }
+    ],
+    // Add generic fallback if needed in component logic
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const PYQ_QUESTIONS: Record<string, any[]> = {
+    // SSC CGL 2024
+    pyq_cgl_2024: [
+        { id: 1, text: "Select the option that can be used as a one-word substitute: 'A person who does not believe in God'", options: ["Theist", "Atheist", "Agnostic", "Cynic"], correctAnswer: 1 },
+        { id: 2, text: "If 12x = 144, then x = ?", options: ["10", "11", "12", "13"], correctAnswer: 2 },
+        { id: 3, text: "The Battle of Plassey was fought in which year?", options: ["1757", "1764", "1857", "1947"], correctAnswer: 0 },
+        { id: 4, text: "Which Vitamin is water soluble?", options: ["Vitamin A", "Vitamin B", "Vitamin D", "Vitamin E"], correctAnswer: 1 },
+        { id: 5, text: "Complete the series: 4, 9, 16, 25, ?", options: ["30", "32", "36", "40"], correctAnswer: 2 }
+    ],
+    // SSC CHSL 2024
+    pyq_chsl_2024: [
+        { id: 1, text: "Synonym of 'ABANDON'", options: ["Keep", "Forsake", "Join", "Embrace"], correctAnswer: 1 },
+        { id: 2, text: "A can do a work in 10 days, B in 15 days. Together they take:", options: ["5 days", "6 days", "8 days", "7 days"], correctAnswer: 1 },
+        { id: 3, text: "Largest organ in human body is:", options: ["Liver", "Heart", "Skin", "Brain"], correctAnswer: 2 },
+        { id: 4, text: "Constitution Day is celebrated on:", options: ["26 Jan", "15 Aug", "26 Nov", "2 Oct"], correctAnswer: 2 },
+        { id: 5, text: "Find the odd one out: 27, 64, 125, 144", options: ["27", "64", "125", "144"], correctAnswer: 3 }
+    ]
+};
+

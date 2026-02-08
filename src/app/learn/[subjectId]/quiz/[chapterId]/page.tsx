@@ -6,55 +6,42 @@ import { Button } from "@/components/ui/Button";
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { CHAPTER_QUESTIONS } from "@/data/mockData";
 
-// Reuse the mock test interface but for a small chapter quiz
-const QUIZ_QUESTIONS = [
+const GENERIC_QUESTIONS = [
     {
         id: 1,
         text: "What is the primary concept discussed in this chapter?",
-        options: ["Algebra", "Calculus", "Geometry", "Arithmetic"],
-        correctAnswer: 3,
+        options: ["Concept A", "Concept B", "Concept C", "Concept D"],
+        correctAnswer: 0,
     },
     {
         id: 2,
-        text: "Solve: 15% of 200",
-        options: ["20", "25", "30", "35"],
-        correctAnswer: 2,
-    },
-    {
-        id: 3,
-        text: "If A is 20% more than B, B is how much percent less than A?",
-        options: ["16.66%", "20%", "25%", "33.33%"],
-        correctAnswer: 0,
-    },
-    {
-        id: 4,
-        text: "Which formula is correct?",
-        options: ["S = D/T", "S = D*T", "D = S/T", "T = S*D"],
-        correctAnswer: 0,
-    },
-    {
-        id: 5,
-        text: "Find the odd one out: 2, 4, 8, 11, 16",
-        options: ["4", "8", "11", "16"],
-        correctAnswer: 2,
+        text: "Which of the following aligns with the chapter content?",
+        options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+        correctAnswer: 1,
     }
 ];
 
 export default function ChapterQuizPage() {
     const params = useParams();
-    const subjectId = params.subjectId as string;
     const router = useRouter();
+
+    // Safety check for params
+    const subjectId = (params.subjectId as string) || "subject";
+    const chapterId = (params.chapterId as string) || "chapter";
+
+    const quizQuestions = CHAPTER_QUESTIONS[chapterId] || GENERIC_QUESTIONS;
 
     const handleSubmit = (answers: Record<number, number>) => {
         // Determine score
         let score = 0;
-        QUIZ_QUESTIONS.forEach(q => {
+        quizQuestions.forEach(q => {
             if (answers[q.id] === q.correctAnswer) score += 1;
         });
 
         // Redirect to a mini result view or just alert
-        alert(`Quiz Completed! You scored ${score}/${QUIZ_QUESTIONS.length}`);
+        alert(`Quiz Completed! You scored ${score}/${quizQuestions.length}`);
         router.push(`/learn/${subjectId}`);
     };
 
@@ -66,10 +53,10 @@ export default function ChapterQuizPage() {
 
             <div className="bg-card border rounded-xl overflow-hidden shadow-sm">
                 <div className="p-4 bg-secondary/30 border-b">
-                    <h1 className="font-bold text-xl">Practice Quiz: {subjectId.toUpperCase()}</h1>
+                    <h1 className="font-bold text-xl uppercase">Practice Quiz: {subjectId} ({chapterId})</h1>
                 </div>
                 <MockTestInterface
-                    questions={QUIZ_QUESTIONS}
+                    questions={quizQuestions}
                     durationMinutes={15}
                     onSubmit={handleSubmit}
                 />

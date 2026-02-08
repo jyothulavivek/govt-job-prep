@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { Briefcase, Building2, Globe, GraduationCap, Scale } from "lucide-react";
+import { Briefcase, Building2, Globe, Scale } from "lucide-react";
 import Link from "next/link";
 
 const categories = [

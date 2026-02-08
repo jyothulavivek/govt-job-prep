@@ -8,9 +8,19 @@ import { ArrowLeft, Calendar, FileText, Globe, Bookmark, Share2, Award, Edit } f
 import Link from "next/link";
 import { format } from "date-fns";
 
+// Define types
+interface NewsItem {
+    id: number;
+    category: string;
+    title: string;
+    points: string[];
+    tags: string[];
+    date?: string;
+}
+
 // Helper to get news (Mock + LocalStorage)
 const getNewsForDate = (dateStr: string) => {
-    let localData: any[] = [];
+    let localData: NewsItem[] = [];
 
     // 1. Try to get from LocalStorage (Real User Updates)
     if (typeof window !== 'undefined') {
@@ -19,7 +29,7 @@ const getNewsForDate = (dateStr: string) => {
             if (savedData) {
                 const parsed = JSON.parse(savedData);
                 // Filter by date
-                localData = parsed.filter((item: any) => item.date === dateStr);
+                localData = parsed.filter((item: NewsItem) => item.date === dateStr);
             }
         } catch (e) {
             console.error("Error reading local storage", e);
@@ -29,7 +39,7 @@ const getNewsForDate = (dateStr: string) => {
     // 2. Mock Data (Simulation)
     const seed = dateStr.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
 
-    const mockData = [
+    const mockData: NewsItem[] = [
         {
             id: 1,
             category: "National Appointment",
@@ -98,7 +108,7 @@ const getNewsForDate = (dateStr: string) => {
 
 export default function CurrentAffairsPage() {
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
-    const [newsItems, setNewsItems] = useState<any[]>([]);
+    const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
 
     // Effect to load news when date changes (Client-side only)
     useEffect(() => {
@@ -149,7 +159,7 @@ export default function CurrentAffairsPage() {
                         </CardHeader>
                         <CardContent className="space-y-2">
                             <Button variant="outline" className="w-full justify-start" onClick={() => setSelectedDate(new Date().toISOString().split('T')[0])}>
-                                Today's News
+                                Today&apos;s News
                             </Button>
                             <Button variant="ghost" className="w-full justify-start text-muted-foreground">
                                 <FileText className="h-4 w-4 mr-2" /> Monthly PDF Capsules

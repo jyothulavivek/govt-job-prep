@@ -1,13 +1,15 @@
 "use client";
 
-import { MOCK_TESTS } from "@/data/mockData";
+import { getAllExams } from "@/data/pyq-questions";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
-import { Timer, HelpCircle, BarChart } from "lucide-react";
+import { Timer, BarChart, FileQuestion } from "lucide-react";
 
 export default function TestListingPage() {
+    const exams = getAllExams();
+
     return (
         <div className="container mx-auto px-4 py-12">
             <div className="text-center mb-12">
@@ -18,22 +20,26 @@ export default function TestListingPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {MOCK_TESTS.map((test) => (
-                    <Card key={test.id} className="hover:shadow-lg transition-all border-t-4 border-t-primary">
+                {exams.map((test) => (
+                    <Card key={test.id} className="hover:shadow-lg transition-all border-t-4 border-t-primary flex flex-col h-full">
                         <CardHeader>
                             <div className="flex justify-between items-start mb-2">
-                                <Badge variant={test.difficulty === 'High' ? 'destructive' : 'secondary'}>
-                                    {test.difficulty} Difficulty
+                                <Badge variant="secondary" className="uppercase">
+                                    {test.category}
                                 </Badge>
-                                <span className="text-xs font-mono text-muted-foreground uppercase">{test.category}</span>
+                                {test.questions.length === 100 && (
+                                    <Badge variant="outline" className="border-green-600 text-green-600 bg-green-50">
+                                        Full Length
+                                    </Badge>
+                                )}
                             </div>
                             <CardTitle className="text-xl line-clamp-2">{test.title}</CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="mt-auto">
                             <div className="flex justify-between text-sm text-muted-foreground mb-6">
                                 <div className="flex items-center gap-1">
-                                    <HelpCircle className="h-4 w-4" />
-                                    {test.questions} Qs
+                                    <FileQuestion className="h-4 w-4" />
+                                    {test.questions.length} Qs
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <Timer className="h-4 w-4" />
@@ -41,12 +47,12 @@ export default function TestListingPage() {
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <BarChart className="h-4 w-4" />
-                                    300 Marks
+                                    {test.totalMarks} Marks
                                 </div>
                             </div>
 
                             <Link href={`/test/${test.id}`}>
-                                <Button className="w-full" size="lg">Start Test Now</Button>
+                                <Button className="w-full font-bold" size="lg">Start Test Now</Button>
                             </Link>
                         </CardContent>
                     </Card>
