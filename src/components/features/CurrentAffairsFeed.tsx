@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
-import { RefreshCw, TrendingUp, Globe, Award, Briefcase } from "lucide-react";
+import { RefreshCw, TrendingUp, Globe, Award, Briefcase, Calendar } from "lucide-react";
 import { format } from "date-fns";
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 
 // High quality mock data for competitive exams
 const STARTING_NEWS = [
@@ -80,14 +82,21 @@ export function CurrentAffairsFeed() {
                     </CardTitle>
                     <p className="text-xs text-muted-foreground">Real-time exam updates</p>
                 </div>
-                <button
-                    onClick={refreshNews}
-                    disabled={loading}
-                    className="p-2 hover:bg-secondary rounded-full transition-colors"
-                    title="Refresh Feed"
-                >
-                    <RefreshCw className={`h-4 w-4 text-muted-foreground ${loading ? "animate-spin" : ""}`} />
-                </button>
+                <div className="flex items-center gap-1">
+                    <Link href="/current-affairs">
+                        <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-primary/20 hover:text-primary" title="Select Date / Archives">
+                            <Calendar className="h-4 w-4" />
+                        </Button>
+                    </Link>
+                    <button
+                        onClick={refreshNews}
+                        disabled={loading}
+                        className="p-2 hover:bg-secondary rounded-full transition-colors"
+                        title="Refresh Feed"
+                    >
+                        <RefreshCw className={`h-4 w-4 text-muted-foreground ${loading ? "animate-spin" : ""}`} />
+                    </button>
+                </div>
             </CardHeader>
             <CardContent className="pt-4">
                 <div className="space-y-4">
